@@ -278,6 +278,37 @@ app.post('/get_filtered_trips_data', async(req, res) => {
           }
 });
 
+app.delete('/delete_trips_on_specific_date', async(req, res) => {
+  console.log(req.body)
+
+  try{
+      const trip_date = req.body.trip_date //  YYYY-MM-DD
+      const response = await schema.schema_trip_data.deleteMany({trip_date: trip_date})
+      console.log(response)
+      
+      if(response.deletedCount == 0){
+          // res.status(200).json(" - Delete Failed")
+          res.json(
+            {
+              message : response.deletedCount + " - Delete Failed",
+              deletedCount : response.deletedCount
+            }
+          )
+      }else{
+          // res.status(200).json(" - Delete Success")
+          res.json(
+            {
+              message : response.deletedCount + " - Delete Success",
+              deletedCount : response.deletedCount
+            }
+          )
+      }
+  }
+  catch (error){
+      res.json(error)
+  }
+});
+
 app.get('*', (req, res) => {
     res.json("<h1>404</h1>");
 });
