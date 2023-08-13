@@ -70,9 +70,11 @@ const schema_trip_data_1 = new mongoose.Schema({
 } )
 
 // const scheme_user_login_1 = new mongoose.model("schema_rider_login", schema_rider_login_1)
+let d = new Date();
+let current_date = d.getFullYear() +"-"+ (d.getMonth()+1) +"-"+ d.getDate();
 
 let schema = {
-    schema_rider_login : new mongoose.model("schema_rider_login-2", schema_rider_login_1),
-    schema_trip_data : new mongoose.model("schema_trip_data-2", schema_trip_data_1)
+    schema_rider_login : new mongoose.model("y_rider_login-2", schema_rider_login_1),
+    schema_trip_data : new mongoose.model(`y_trip_data_${current_date}`, schema_trip_data_1)
 }
 module.exports = schema
