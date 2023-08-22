@@ -278,6 +278,53 @@ app.post('/get_filtered_trips_data', async(req, res) => {
           }
 });
 
+app.post('/get_filtered_trips_data_2', async(req, res) => {
+  console.log("get_filtered_trips_data_2")
+  console.log(req.body)
+  const start_n = req.body.start_n
+  const pickup_city = req.body.pickup_city
+  const drop_city = req.body.drop_city
+  const trip_date = req.body.trip_date
+
+  // console.log("---->",start_n,pickup_city,drop_city,trip_date)
+
+
+
+            // {pickup_city : new RegExp(pickup_city, 'i')},
+            //       {drop_city : new RegExp(drop_city, 'i')},
+            //       {trip_date : new RegExp(trip_date, 'i')}
+
+            //       .sort({$natural:-1})
+
+            // console.log("else---",start_n)
+            /*const filtered_trips = await schema.schema_trip_data.find(  
+              {
+                $and: [
+                  {pickup_city : pickup_city},
+                  {drop_city : drop_city},
+                  {trip_date : trip_date}
+                ]
+              })
+                .sort({ "add_time":-1 })
+                .skip(start_n)
+                .limit(10)*/
+
+                const filtered_trips = await schema.schema_trip_data.find(  
+                  {
+                    pickup_city : pickup_city,
+                    drop_city : drop_city,
+                    trip_date : trip_date                    
+                  })
+                    .sort({ "add_time":-1 })
+                    .skip(start_n)
+                    .limit(10)
+
+                // console.log('----------------filtered_trips')
+                console.log(filtered_trips)
+                res.json(filtered_trips)
+
+});
+
 app.delete('/delete_trips_on_specific_date', async(req, res) => {
   console.log(req.body)
 

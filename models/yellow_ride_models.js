@@ -42,6 +42,10 @@ const schema_trip_data_1 = new mongoose.Schema({
         type: String,
         // required: true,
     },
+    req_fare:{
+        type: String,
+        // required: true,
+    },
     full_pickup_address:{
         type: String,
         // required: true,
