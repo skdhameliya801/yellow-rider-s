@@ -311,9 +311,11 @@ app.post('/get_filtered_trips_data_2', async(req, res) => {
 
                 const filtered_trips = await schema.schema_trip_data.find(  
                   {
-                    pickup_city : pickup_city,
-                    drop_city : drop_city,
-                    trip_date : trip_date                    
+                    $and : [
+                      {pickup_city : new RegExp(pickup_city, 'ig')},
+                      {drop_city : new RegExp(drop_city, 'ig')},
+                      {trip_date : new RegExp(trip_date, 'ig')}
+                    ]
                   })
                     .sort({ "add_time":-1 })
                     .skip(start_n)
