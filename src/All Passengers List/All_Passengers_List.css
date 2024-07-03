@@ -1,0 +1,9 @@
+#offcanvasBottom{
+    width: 25%;
+}
+
+@media (max-width: 767.98px) {
+    #offcanvasBottom{
+        width: 75%;
+    }
+}
